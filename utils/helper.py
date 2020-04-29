@@ -27,7 +27,7 @@ def make_train_data_from_txt(config, tokenizer):
     data = list()
     with open(config.train_data_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-    for i in tqdm(range(0, len(lines)-1)):
+    for i in tqdm(range(0, max(len(lines), config.max_data_size))):
         s1, s2 = lines[i].replace('\n', '').split('\t')
         data.append(tuple([tokenizer.encode(s1), tokenizer.encode(s2)]))
 #        data.append(tuple(map(tokenizer.encode, lines[i:i+2])))

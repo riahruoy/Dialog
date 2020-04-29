@@ -13,6 +13,7 @@ class Config:
     d_ff = 2048
     drop_rate = 0.1
     max_grad_norm = 1.0
+    max_data_size = 10000
 
     smoothing = 0.1
     factor = 2
