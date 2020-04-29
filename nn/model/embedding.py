@@ -6,8 +6,8 @@ import torch.nn as nn
 
 def build_embedding(vocab=32000, d_model=512, drop_rate=0.1, max_len=12):
     return nn.Sequential(
-        Embeddings(vocab, d_model),
-        PositionalEncoding(d_model, drop_rate, max_len)
+        Embeddings(vocab, d_model)
+#        PositionalEncoding(d_model, drop_rate, max_len)
     )
 
 

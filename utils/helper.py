@@ -27,8 +27,12 @@ def make_train_data_from_txt(config, tokenizer):
     data = list()
     with open(config.train_data_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-    for i in tqdm(range(0, len(lines) - 1, 3)):
-        data.append(tuple(map(tokenizer.encode, lines[i:i + 2])))
+    for i in tqdm(range(0, len(lines)-1)):
+        s1, s2 = lines[i].replace('\n', '').split('\t')
+        data.append(tuple([tokenizer.encode(s1), tokenizer.encode(s2)]))
+#        data.append(tuple(map(tokenizer.encode, lines[i:i+2])))
+        if i >= 10:
+            break
     with open(f'{config.pickle_path}', 'wb') as f:
         pickle.dump(data, f)
     return data

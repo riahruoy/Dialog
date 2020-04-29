@@ -128,7 +128,7 @@ dmypy.json
 models/
 pretrained/
 
-data/
+
 
 .idea/vcs.xml
 bert_pretraining/model/

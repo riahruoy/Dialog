@@ -1,9 +1,9 @@
 class Config:
     seed = 116
-    device = 'cuda'
+    device = 'cpu'
 
     n_epoch = 100
-    batch_size = 64
+    batch_size = 1
     max_len = 22
 
     vocab_size = 32000
@@ -19,8 +19,8 @@ class Config:
     warmup = 4000
 
     # FIXME: Data path must be changed.
-    data_dir = './models'
-    train_data_path = f'{data_dir}/training_data.txt'
+    data_dir = './data'
+    train_data_path = f'{data_dir}/fce.dev.gold.bea19.m2.tsv'
     pickle_path = f'{data_dir}/train_data.pkl'
     fn = 'ckpt'
 
@@ -28,4 +28,4 @@ class Config:
     # FIXME: if you use original data, change flag of this
     use_pickle = False
 
-    model_name = 'bert-base-japanese-whole-word-masking'
+    model_name = 'bert-base-uncased'

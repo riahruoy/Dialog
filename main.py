@@ -5,6 +5,7 @@ import pickle
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from transformers import BertTokenizer
 
 from config import Config
 from nn import build_model
@@ -25,7 +26,8 @@ if __name__ == '__main__':
     device = torch.device(Config.device)
 
     start_epoch = 0
-    tokenizer = Tokenizer.from_pretrained(Config.model_name)
+    #tokenizer = Tokenizer.from_pretrained(Config.model_name)
+    tokenizer = BertTokenizer.from_pretrained(Config.model_name)
 
     logging.info('Preparing training data')
     if Config.use_pickle:
@@ -56,4 +58,4 @@ if __name__ == '__main__':
         one_cycle(epoch, Config, model, optimizer, criterion,
                   BalancedDataLoader(dataset, tokenizer.pad_token_id),
                   tokenizer, device)
-        evaluate(Config, 'おはよーーー', tokenizer, model, device)
+        evaluate(Config, 'This are a pen.', tokenizer, model, device)
