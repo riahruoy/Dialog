@@ -2,13 +2,11 @@ import torch.nn.utils.rnn as rnn
 from torch.utils.data import Dataset
 from torch.utils.data.sampler import RandomSampler, BatchSampler
 
-from config import Config
-
 
 class BalancedDataLoader(BatchSampler):
 
-    def __init__(self, data: Dataset, pad_id: int):
-        super().__init__(RandomSampler(data), Config.batch_size, True)
+    def __init__(self, data: Dataset, pad_id: int, batch_size):
+        super().__init__(RandomSampler(data), batch_size, True)
         self.pad_id = pad_id
         self.count = 0
 

@@ -56,6 +56,6 @@ if __name__ == '__main__':
     logging.info('Start Training')
     for epoch in range(start_epoch, Config.n_epoch):
         one_cycle(epoch, Config, model, optimizer, criterion,
-                  BalancedDataLoader(dataset, tokenizer.pad_token_id),
+                  BalancedDataLoader(dataset, tokenizer.pad_token_id, Config.batch_size),
                   tokenizer, device)
         evaluate(Config, 'This are a pen.', tokenizer, model, device)
