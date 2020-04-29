@@ -14,17 +14,15 @@ def one_cycle(epoch, config, model, optimizer, criterion, data_loader,
             batch = Batch(x.to(device), y.to(device), pad=tokenizer.pad_token_id)
             out = model(batch.source, batch.source_mask,
                         batch.target, batch.target_mask)
-            out2 = torch.argmax(out, dim=2, keepdim=False)
-            print(tokenizer.decode(out2[0]))
-            loss = criterion(out.transpose(1,2), batch.target_y).mean()
+            loss = criterion(out.transpose(1, 2), batch.target_y).mean()
             loss.backward()
             optimizer.step()
             clip_grad_norm_(model.parameters(), config.max_grad_norm)
             pbar.update(1)
             pbar.set_postfix_str(f'Loss: {loss.item():.5f}')
-    # torch.save({
-    #     'epoch': epoch,
-    #     'model': model.state_dict(),
-    #     'opt': optimizer.state_dict()
-    # }, f'{config.data_dir}/{config.fn}_{epoch}.pth')
-    # print('*** Saved Model ***')
+    torch.save({
+        'epoch': epoch,
+        'model': model.state_dict(),
+        'opt': optimizer.state_dict()
+    }, f'{config.data_dir}/{config.fn}_{epoch}.pth')
+    print('*** Saved Model ***')
